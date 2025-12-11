@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>For Asees, From The Universe</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at top,#31336d 0%,#060717 40%,#02030a 100%);color:#f5f5ff;overflow:hidden}
+    .stars::before,.stars::after{content:"";position:fixed;inset:-60px;background-image:radial-gradient(#ffffffaa 1px,transparent 1px),radial-gradient(#ffffff55 1px,transparent 1px);background-size:120px 120px,220px 220px;background-position:0 0,80px 80px;opacity:.4;animation:twinkle 12s linear infinite alternate;pointer-events:none}
+    .stars::after{opacity:.2;filter:blur(1px);animation-duration:18s}
+    @keyframes twinkle{0%{transform:translate3d(0,0,0) scale(1);opacity:.3}100%{transform:translate3d(-25px,15px,0) scale(1.03);opacity:.75}}
+    .petals{pointer-events:none;position:fixed;inset:0;overflow:hidden;z-index:0}
+    .petal{position:absolute;width:14px;height:24px;border-radius:999px;background:radial-gradient(circle at 30% 20%,#ffffffee,#f3f3f7dd,#dddde8aa);opacity:.6;filter:blur(.2px);animation:fall linear infinite}
+    @keyframes fall{0%{transform:translate3d(var(--x-start),-40px,0) rotate(0deg);opacity:0}10%{opacity:.7}100%{transform:translate3d(var(--x-end),110vh,0) rotate(260deg);opacity:0}}
+    .container{position:relative;z-index:2;width:100%;max-width:520px;padding:24px}
+    .card{background:radial-gradient(circle at top left,#2a2c63 0%,#191a33 38%,#13142b 100%);border-radius:26px;padding:22px 20px 18px;box-shadow:0 22px 60px rgba(0,0,0,.7);border:1px solid rgba(255,255,255,.1);position:relative;overflow:hidden;animation:cardIn .6s ease-out}
+    .card::before{content:"";position:absolute;inset:-40%;background:radial-gradient(circle at top right,rgba(255,255,255,.14),transparent 55%),radial-gradient(circle at bottom left,rgba(186,199,255,.12),transparent 55%);mix-blend-mode:screen;opacity:.8;pointer-events:none}
+    .aura{position:absolute;inset:40% -100px auto;height:120px;background:radial-gradient(circle,rgba(255,255,255,.35) 0%,transparent 60%);opacity:.2;filter:blur(20px);pointer-events:none}
+    @keyframes cardIn{from{opacity:0;transform:translateY(12px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+    .header{position:relative;margin-bottom:16px}
+    .tag-row{display:flex;justify-content:space-between;align-items:center;gap:10px}
+    .tag{display:inline-flex;align-items:center;gap:6px;padding:4px 11px;border-radius:999px;font-size:11px;text-transform:uppercase;letter-spacing:.095em;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.13);backdrop-filter:blur(10px);white-space:nowrap}
+    .title{margin-top:10px;font-size:22px;line-height:1.25}
+    .subtitle{margin-top:6px;font-size:12px;opacity:.76}
+    .rose-badge{position:absolute;right:-4px;top:-6px;font-size:24px;filter:drop-shadow(0 0 10px rgba(255,255,255,.4));transform-origin:center;animation:floatRose 3.5s ease-in-out infinite}
+    @keyframes floatRose{0%{transform:translateY(0) rotate(-6deg)}50%{transform:translateY(-3px) rotate(4deg)}100%{transform:translateY(0) rotate(-6deg)}}
+    .mode-toggle{margin-top:10px;display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:999px;background:rgba(9,12,40,.86);border:1px solid rgba(255,255,255,.14);font-size:11px;cursor:pointer;user-select:none}
+    .mode-pill{display:flex;align-items:center;gap:6px;font-size:11px;padding:4px 9px;border-radius:999px;background:rgba(255,255,255,.08)}
+    .message-box{position:relative;margin-top:20px;padding:18px 16px 18px;border-radius:20px;background:radial-gradient(circle at top,rgba(255,255,255,.10),rgba(10,10,30,.96));border:1px solid rgba(255,255,255,.18);min-height:130px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+    .message-text{font-size:15px;line-height:1.5;text-align:left;opacity:.96;animation:fadeIn .4s ease-out}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+    .signature{margin-top:10px;font-size:12px;font-style:italic;opacity:.85;text-align:right}
+    .controls{margin-top:18px;display:flex;flex-direction:column;gap:8px}
+    .btn-row{display:flex;flex-wrap:wrap;gap:8px}
+    .btn{border:none;cursor:pointer;padding:10px 14px;border-radius:999px;font-size:13px;font-weight:500;display:inline-flex;align-items:center;justify-content:center;gap:7px;background:linear-gradient(135deg,#f5f5ff,#e4e8ff);color:#111226;box-shadow:0 8px 22px rgba(0,0,0,.55);transition:transform .12s ease,box-shadow .12s ease,filter .12s ease;white-space:nowrap;flex:1}
+    .btn.secondary{background:rgba(255,255,255,.08);color:#f5f5ff;border:1px solid rgba(255,255,255,.15);box-shadow:none;flex:0 0 auto;font-size:12px;padding-inline:12px}
+    .hint{font-size:11px;opacity:.7;text-align:center}
+    .footer{margin-top:14px;font-size:11px;opacity:.63;text-align:center}
+    @media(max-width:520px){.container{padding:18px}.card{padding:20px 16px 16px}.title{font-size:20px}.message-text{font-size:14px}.btn-row{flex-direction:column}.btn{width:100%}}
+  </style>
+</head>
+<body class="stars">
+  <div class="petals" id="petals"></div>
+  <div class="container">
+    <div class="card">
+      <div class="aura"></div>
+      <div class="header">
+        <div class="tag-row">
+          <div class="tag"><span class="tag-emoji">✨</span><span>Universe Message • For Asees</span></div>
+          <div class="tiny-note">crafted quietly by Kevin</div>
+        </div>
+        <div class="rose-badge">🤍🌹</div>
+        <h1 class="title">For the girl who makes<br>the universe feel soft.</h1>
+        <p class="subtitle">Tap when you miss me, when you're tired, or just because.</p>
+        <div class="mode-toggle" onclick="toggleMode()">
+          <div class="mode-pill"><span id="modeIcon">🌤️</span><span class="mode-label" id="modeLabel">Daily magic</span></div>
+          <span style="opacity:.7;">Tap to switch to ‘For tough days’</span>
+        </div>
+      </div>
+
+      <div class="message-box">
+        <div class="message-inner">
+          <div id="loading" class="loading-line" style="display:none"><span class="loading-dots">Aligning your stars</span></div>
+          <div id="message" class="message-text">Today the universe chose a quiet moment to remind you: you are loved in ways you haven’t even discovered yet.</div>
+          <div class="signature">– Kevin</div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <div class="btn-row">
+          <button class="btn" onclick="nextMessage()"><span>💫</span><span>Tap for today’s message</span></button>
+          <button class="btn secondary" onclick="toggleMusic()"><span id="musicIcon">🔈</span><span id="musicLabel">Soft universe music</span></button>
+        </div>
+        <p class="hint">You can tap as many times as you like. The universe doesn’t run out of love for you. 🌌</p>
+      </div>
+
+      <div class="footer">For you, Asees – white-rose girl, fashion queen, soft-heart storm, and the universe’s favourite child. 💫</div>
+    </div>
+  </div>
+
+  <audio id="bgMusic" loop><source src="" type="audio/mpeg" /></audio>
+
+  <script>
+    const allMessages = [
+      "Somewhere between the stars and Ludhiana, there’s a line of light with your name on it. Every time it glows, it’s me thinking of you.",
+      "If the universe had a favourite notification, it would be: ‘Asees just smiled.’ I’d turn that one on forever.",
+      "The sky doesn’t know this, but I’ve quietly dedicated tonight’s moon to you.",
+      "Every galaxy I imagine has one constant – a girl in white-rose energy, calming storms just by existing. That’s you.",
+      "If stardust had a face, it would look like you on the days you’re laughing too hard to care how you look.",
+      "The universe has billions of stars, but I keep wishing on the same one: you.",
+      "There are days when I don’t know how to pray, so I just whisper your name and trust the universe to understand.",
+      "Some souls are supernovas. You’re different – you’re a soft, endless glow. The kind that never burns out.",
+      "If I could screenshot a feeling, it would be the moment you walk into a room and everything in me calms down.",
+      "The universe was doing just fine… and then it met you and had to redesign its idea of ‘beautiful’.",
+      "Your smile is not just cute, it’s suspiciously powerful. I’ve seen entire moods change in under 3 seconds.",
+      "Some people talk well. You do something rarer – you make people feel like they matter when they talk to you.",
+      "You don’t just enter spaces, you soften them. Even the air feels safer when you’re around.",
+      "If people had comfort settings like a room, yours would be ‘always warm, always safe, always heard.’",
+      "I hope today you remember this: you are the reason someone feels less alone, braver, and more seen.",
+      "Your way of listening is a love language. Even silence feels hugged when you’re around.",
+      "The world would be so loud without you, but somehow you’ve figured out how to be the volume button of peace.",
+      "Your presence is like a perfectly timed deep breath. The kind that makes everything feel like it might be okay after all.",
+      "You are not ‘too much’. You are that exact amount of love some people never knew they needed.",
+      "Whenever your overthinking says ‘no one cares’, just know I am somewhere out there defending your heart like a full-time job.",
+      "If a white rose could talk, it would probably ask to dress like you and borrow your fashion sense.",
+      "White roses remind me of you – soft, elegant, and somehow always exactly what my day needed.",
+      "If outfits had a queen, it would be the version of you who casually identifies shades of colours that I didn’t even know existed.",
+      "You don’t just wear clothes, you tell stories with them. The universe is low-key taking notes.",
+      "Some people follow trends. You are the trend, you just haven’t checked the comments section yet.",
+      "In a world full of loud fashion, you mastered the art of ‘she looks like a calm dream, but she’s the main character.’",
+      "You make ‘effortlessly pretty’ look suspiciously easy. I think even the mirror is biased in your favour.",
+      "Every time you fix your hair or adjust your outfit, somewhere a white rose decides to bloom in your honour.",
+      "If there was a runway in the stars, I’d bet on you to walk it in one try, no rehearsals.",
+      "Pinterest boards are jealous of you. They’re trying, but you exist in real life.",
+      "Somewhere, a future version of you is standing backstage at a huge open mic, smiling, thinking, ‘I’m glad I never gave up.’ I’m already proud of her.",
+      "Your words don’t just fill mics; they fill hearts. One day, a stranger will quote you as their reminder to keep going.",
+      "Every piece of content you create is a tiny rebellion against silence. Don’t underestimate that.",
+      "You were not made to be ordinary. You were made to sit under bright lights and speak, while people silently whisper, ‘She’s so good.’",
+      "Open mics and cameras are lucky to have you. They get to witness the version of you the world is still waiting to discover.",
+      "Whatever stage you step on – big or small – becomes meaningful because you stood there and dared to be you.",
+      "You are the kind of person whose journey will one day be someone’s ‘I didn’t quit because of her.’",
+      "DSDT may see you as a content creator, but I see you as a gentle revolution in progress.",
+      "If doubt visits today, tell it this: ‘I’m busy becoming the woman I needed when I was younger.’ Then keep going.",
+      "Every little step you take – every script, every idea, every recording – is building a future version of you who will make us all say, ‘We always knew.’",
+      "If today feels heavy, remember: resting is not failing. Even stars disappear for a while and come back shining.",
+      "You’re allowed to be soft and strong at the same time. You’ve actually been doing that for years.",
+      "On the days you feel like you’re ‘too emotional’, know this: your heart is not a flaw, it’s your superpower.",
+      "If your mind is loud today, come sit with this thought: somewhere, someone is deeply grateful you exist. (Hi, it’s me.)",
+      "You don’t need to prove your worth today. Your existence alone is already a quiet, shining miracle.",
+      "When you feel like you’re behind, remember the universe runs on divine timing, not Instagram timing.",
+      "If no one told you today – I am proud of you, not just for what you do, but for how gently you carry your heart.",
+      "You don’t have to hold everything together all the time. Some days, it’s enough that you held yourself.",
+      "You’re not difficult. You’re detailed. The universe spent extra time on you.",
+      "Even when you feel like you’re not doing enough, your kindness alone is changing the atmosphere around you.",
+      "I don’t know how the universe picked me to be the one who gets to love you like this, but I promise I’m taking the role seriously.",
+      "There are a lot of ‘pretty’ people in the world. You’re different – you’re home. And that’s so much rarer.",
+      "One day, we’ll look back at these days and laugh at how we doubted what was always meant for us.",
+      "If you ever wonder, ‘Does he really care that much?’ – yes. More than these words, more than this screen, more than you realise.",
+      "You’re not just part of my life; you’re the part that makes everything else make sense.",
+      "Sometimes my whole day’s highlight is one tiny message from you. That’s how powerful you are in my universe.",
+      "If I could send a push notification to your heart right now, it would say: ‘You’re doing better than you think. And you are loved more than you know.’",
+      "If my feelings for you were a sky, it would be that late-evening one – calm, deep, and full of quiet colours that never really end.",
+      "No matter how many messages this generator holds, the real one is simple: it’s always you. It’s been you. It will be you.",
+      "Some loves are loud. Ours feels like a constellation – connected, steady, and always there when you look up."
+    ];
+
+    const comfortIndexes = [40,41,42,43,44,45,46,47,48,49];
+
+    let order = [], currentIndex = 0, comfortOrder = [], comfortCurrentIndex = 0, comfortMode = false;
+
+    const messageEl = document.getElementById("message");
+    const loadingEl = document.getElementById("loading");
+    const music = document.getElementById("bgMusic");
+    const musicIcon = document.getElementById("musicIcon");
+    const musicLabel = document.getElementById("musicLabel");
+    const modeIcon = document.getElementById("modeIcon");
+    const modeLabel = document.getElementById("modeLabel");
+
+    function shuffleArray(arr){const copy=[...arr];for(let i=copy.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[copy[i],copy[j]]=[copy[j],copy[i]]}return copy}
+
+    function initOrders(){order=shuffleArray([...allMessages.keys()]);currentIndex=0;comfortOrder=shuffleArray(comfortIndexes);comfortCurrentIndex=0}
+
+    function showLoading(show){loadingEl.style.display=show?"block":"none"}
+
+    function nextMessage(){
+      if(music&&music.paused&&music.src&&music.src.trim()!==""){music.play().catch(()=>{})}
+      showLoading(true);messageEl.style.opacity=.2;
+      setTimeout(()=>{let index;if(comfortMode){if(comfortCurrentIndex>=comfortOrder.length){comfortOrder=shuffleArray(comfortIndexes);comfortCurrentIndex=0}index=comfortOrder[comfortCurrentIndex++]}else{if(currentIndex>=order.length){order=shuffleArray([...allMessages.keys()]);currentIndex=0}index=order[currentIndex++]}messageEl.style.animation="none";void messageEl.offsetWidth;messageEl.textContent=allMessages[index];messageEl.style.animation="fadeIn .45s ease-out";messageEl.style.opacity=1;showLoading(false)},700)
+    }
+
+    function toggleMusic(){if(!music.src||music.src.trim()===""){alert("Kevin note: add a music file URL in the HTML first, then this will play 🌌");return}if(music.paused){music.play().then(()=>{musicIcon.textContent="🔊";musicLabel.textContent="Universe music on"}).catch(()=>{})}else{music.pause();musicIcon.textContent="🔈";musicLabel.textContent="Soft universe music"}}
+
+    function toggleMode(){comfortMode=!comfortMode;if(comfortMode){modeIcon.textContent="🌙";modeLabel.textContent="For tough days"}else{modeIcon.textContent="🌤️";modeLabel.textContent="Daily magic"}}
+
+    function createPetals(){const container=document.getElementById("petals");const count=14;for(let i=0;i<count;i++){const petal=document.createElement("div");petal.className="petal";const start=Math.random()*100;const end=start+(Math.random()*20-10);const duration=14+Math.random()*10;const delay=-Math.random()*duration;petal.style.setProperty("--x-start",start+"vw");petal.style.setProperty("--x-end",end+"vw");petal.style.animationDuration=duration+"s";petal.style.animationDelay=delay+"s";container.appendChild(petal)}}
+    createPetals();initOrders();
+  </script>
+</body>
+</html>
